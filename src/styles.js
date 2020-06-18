@@ -49,8 +49,8 @@ export const squareStyles = {
     fontSize: '50px',
     fontWeight: '800',
     cursor: 'pointer',
-    outline: 'none'
-    &:hover: {
-        background: "#efefef"
-      }
+    outline: 'none',
+    ':hover': {
+        background: 'skyblue'
+    }
 };

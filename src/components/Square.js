@@ -1,5 +1,6 @@
 import React from 'react';
 import { squareStyles } from '../styles'
+import Radium from 'radium'
 
 
 const Square = ({value, onClick}) => (
@@ -8,4 +9,4 @@ const Square = ({value, onClick}) => (
     </button>
 );
 
-export default Square;
+export default Radium(Square);
