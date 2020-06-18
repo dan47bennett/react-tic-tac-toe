@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { calculateWinner } from '../helpers';
+import { calculateWinner, isBoardFull } from '../helpers';
 import Board from './Board';
 import { gameStyles } from '../styles';
 
@@ -9,6 +9,8 @@ const Game = () => {
     const [stepNumber, setStepNumber] = useState(0);
     const [xIsNext, setXIsNext] = useState(true);
     const winner = calculateWinner(history[stepNumber]);
+    const fullBoard = isBoardFull(history[stepNumber]);
+
 
     const handleClick = i => {
         const pointInHistory = history.slice(0, stepNumber + 1)
@@ -31,12 +33,12 @@ const Game = () => {
         }
     }
 
-    const renderMoves2 = () => {
+    const renderMoves = () => {
         return(
             <div>
-                <button onClick = {() => jumpTo(stepNumber - 1)}>Previous Move</button>
-                <button onClick = {() => jumpTo(0)}>Reset game</button>
-                <button onClick = {() => jumpTo(stepNumber + 1)}>Next Move</button>
+                <button onClick = {() => jumpTo(stepNumber - 1)}>Back</button>
+                <button onClick = {() => jumpTo(0)}>Reset</button>
+                <button onClick = {() => jumpTo(stepNumber + 1)}>Next</button>
             </div>
         )}
 
@@ -44,8 +46,8 @@ const Game = () => {
         <>
             <Board squares = {history[stepNumber]} onClick = {handleClick} />
             <div style = {gameStyles}>
-                {winner ? 'Winner: ' + winner : 'Next Player :' + (xIsNext ? 'X' : 'O')}
-                {renderMoves2()}
+                {winner ? 'Winner: ' + winner : (fullBoard ? 'Stalemate' : 'Next Player: ' + (xIsNext ? 'X' : 'O'))}
+                {renderMoves()}
             </div>
         </>
     )
