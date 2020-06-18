@@ -1,7 +1,37 @@
 export const gameStyles = {
-    width: '200px',
+    width: 'fit-content',
     margin: '20px auto'
 };
+
+export const displayMessageStyles = {
+    textAlign: 'center',
+};
+
+const baseButtonStyles = {
+    backgroundColor: 'white',
+    borderStyle: 'none',
+    margin: '0 5px 10px 5px',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
+    width: '40px',
+    height: '40px'
+};
+
+export const buttonStyles = {
+    backButton: {
+        ...baseButtonStyles,
+        backgroundImage: `url(${require('./assets/previous.svg')})`,
+    },
+    resetButton: {
+        ...baseButtonStyles,
+        backgroundImage: `url(${require('./assets/reset.svg')})`,
+    },
+    nextButton: {
+        ...baseButtonStyles,
+        backgroundImage: `url(${require('./assets/next.svg')})`,
+    }
+
+}
 
 export const boardStyles = {
     border: '5px solid darkblue',
@@ -20,4 +50,7 @@ export const squareStyles = {
     fontWeight: '800',
     cursor: 'pointer',
     outline: 'none'
+    &:hover: {
+        background: "#efefef"
+      }
 };

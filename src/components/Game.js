@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { calculateWinner, isBoardFull } from '../helpers';
 import Board from './Board';
-import { gameStyles } from '../styles';
+import { gameStyles, buttonStyles, displayMessageStyles } from '../styles';
 
 
 const Game = () => {
@@ -27,27 +27,31 @@ const Game = () => {
     };
 
     const jumpTo = step => {
-        if(0 <= step && history[step]) {
+        if (0 <= step && history[step]) {
             setStepNumber(step);
             setXIsNext(step % 2 === 0);
         }
-    }
+    };
 
-    const renderMoves = () => {
-        return(
-            <div>
-                <button onClick = {() => jumpTo(stepNumber - 1)}>Back</button>
-                <button onClick = {() => jumpTo(0)}>Reset</button>
-                <button onClick = {() => jumpTo(stepNumber + 1)}>Next</button>
-            </div>
-        )}
+    const getDisplayMessage = () => {
+        if (winner) return `Winner: ${winner}`;
+        if (fullBoard) return 'Stalemate';
+        return `Next player: ${xIsNext ? 'X' : 'O'}`;
+
+    };
 
     return (
         <>
             <Board squares = {history[stepNumber]} onClick = {handleClick} />
             <div style = {gameStyles}>
-                {winner ? 'Winner: ' + winner : (fullBoard ? 'Stalemate' : 'Next Player: ' + (xIsNext ? 'X' : 'O'))}
-                {renderMoves()}
+                <div>
+                    <button style = {buttonStyles.backButton} onClick = {() => jumpTo(stepNumber - 1)}></button>
+                    <button style = {buttonStyles.resetButton} onClick = {() => jumpTo(0)}></button>
+                    <button style = {buttonStyles.nextButton} onClick = {() => jumpTo(stepNumber + 1)}></button> 
+                </div>
+                <div style = {displayMessageStyles}>
+                    {getDisplayMessage()}
+                </div>
             </div>
         </>
     )
