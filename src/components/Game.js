@@ -25,26 +25,27 @@ const Game = () => {
     };
 
     const jumpTo = step => {
-        setStepNumber(step);
-        setXIsNext(step % 2 === 0);
+        if(0 <= step && history[step]) {
+            setStepNumber(step);
+            setXIsNext(step % 2 === 0);
+        }
     }
 
-    const renderMoves = () =>
-        history.map((_step, move) => {
-            const destination = move ? `Go to move #${move}` : 'Go to start';
-            return(
-                <li key = {move}>
-                    <button onClick = {() => jumpTo(move)}>{destination}</button>
-                </li>
-            )
-        })
+    const renderMoves2 = () => {
+        return(
+            <div>
+                <button onClick = {() => jumpTo(stepNumber - 1)}>Previous Move</button>
+                <button onClick = {() => jumpTo(0)}>Reset game</button>
+                <button onClick = {() => jumpTo(stepNumber + 1)}>Next Move</button>
+            </div>
+        )}
 
     return (
         <>
             <Board squares = {history[stepNumber]} onClick = {handleClick} />
             <div style = {gameStyles}>
                 {winner ? 'Winner: ' + winner : 'Next Player :' + (xIsNext ? 'X' : 'O')}
-                {renderMoves()}
+                {renderMoves2()}
             </div>
         </>
     )
