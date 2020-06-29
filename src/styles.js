@@ -54,3 +54,18 @@ export const squareStyles = {
         background: 'skyblue'
     }
 };
+
+export const loginButtonStyles = {
+    backgroundColor: 'white',
+    borderStyle: 'none',
+    margin: '0 5px 10px 5px',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
+    width: '100px',
+    height: '40px',
+    backgroundImage: `url(${require('./assets/google.png')})`,
+    display: 'inline-block',
+    borderRadius: '5px',
+    border: 'thin solid lightgray',
+    whiteSpace: 'nowrap',
+}
