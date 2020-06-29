@@ -1,14 +1,21 @@
-import { React, createContext } from 'react';
-import Game from './components/Game'
+import React from 'react';
+import Game from './components/Game';
+import Login from './components/Login';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { AuthProvider } from './Auth';
+import PrivateRoute from "./PrivateRoute";
 
-export const AuthContext = createContext();   //context to check if the user is logged in
 
 const App = () => {
     return(
-        <AuthContext.Provider>
-            <Game/>
-        </AuthContext.Provider>
-    )
+        <AuthProvider>
+            <Router>
+                <PrivateRoute exact path="/" component={ Game } />
+                <Route exact path="/login" component={Login} />
+            </Router>
+        </AuthProvider>
+    );
+
 }
 
 export default App;

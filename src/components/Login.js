@@ -1,22 +1,24 @@
-import React, { useContext } from 'react'
+import React, { useCallback, useContext } from 'react'
 import firebase from 'firebase'
 import { withRouter, Redirect } from "react-router";
 import { loginButtonStyles } from '../styles'
-import { AuthContext } from '../Authorisation';
+import { AuthContext } from '../Auth';
 
 
 const Login = ({ history }) => {
-    async function googleLogin() {
-        try {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            await firebase.auth().signInWithPopup(provider);
-            history.push('/')
-        } catch (error) {
-            alert(error);
-        }
-    }
+    const handleLogin = useCallback(
+        async function googleLogin() {
+            try {
+                const provider = await new firebase.auth.GoogleAuthProvider();
+                await firebase.auth().signInWithPopup(provider);
+                history.push('/')
+            } catch (error) {
+                alert(error);
+            }
+    }, [history]
+    );
 
-    const currentUser = useContext(AuthContext);
+    const { currentUser } = useContext(AuthContext);
 
     if (currentUser) {
         return <Redirect to='/'/>;
@@ -26,7 +28,7 @@ const Login = ({ history }) => {
     return (
         <>
             <div>Please log in with google</div>
-            <button style={loginButtonStyles} onClick ={googleLogin}>HELLO</button>
+            <button style={loginButtonStyles} onClick ={handleLogin}/>
         </>
     )
 }
