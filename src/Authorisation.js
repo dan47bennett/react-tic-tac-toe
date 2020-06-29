@@ -1,4 +1,4 @@
-import { React, createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import firebase from 'firebase'
 
 
@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     if(pending) {
-        return <>Loading...</>
+        return <div>Loading...</div>
     }
 
     return(
