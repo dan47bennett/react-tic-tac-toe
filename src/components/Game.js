@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { calculateWinner, isBoardFull } from '../helpers';
 import Board from './Board';
 import { gameStyles, buttonStyles, displayMessageStyles } from '../styles';
+import firebase from 'firebase'
 
 
 const Game = () => {
@@ -26,6 +27,17 @@ const Game = () => {
         setXIsNext(!xIsNext);
     };
 
+    async function googleLogOut() {
+        try {
+            await firebase.auth().signOut();
+        }
+            // Sign-out successful.
+          catch (error) {
+            alert(error);
+          }
+    }
+
+
     const jumpTo = step => {
         if (0 <= step && history[step]) {
             setStepNumber(step);
@@ -45,12 +57,15 @@ const Game = () => {
             <Board squares = {history[stepNumber]} onClick = {handleClick} />
             <div style = {gameStyles}>
                 <div>
-                    <button style = {buttonStyles.backButton} onClick = {() => jumpTo(stepNumber - 1)}></button>
-                    <button style = {buttonStyles.resetButton} onClick = {() => jumpTo(0)}></button>
-                    <button style = {buttonStyles.nextButton} onClick = {() => jumpTo(stepNumber + 1)}></button> 
+                    <button style = {buttonStyles.backButton} onClick = {() => jumpTo(stepNumber - 1)}/>
+                    <button style = {buttonStyles.resetButton} onClick = {() => jumpTo(0)}/>
+                    <button style = {buttonStyles.nextButton} onClick = {() => jumpTo(stepNumber + 1)}/>
                 </div>
                 <div style = {displayMessageStyles}>
                     {getDisplayMessage()}
+                </div>
+                <div>
+                    <button onClick = { googleLogOut }>Sign Out</button>
                 </div>
             </div>
         </>
