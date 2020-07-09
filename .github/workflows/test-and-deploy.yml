@@ -1,4 +1,4 @@
-name: firebase-deploy
+name: test-and-deploy
 
 on:
   push:
