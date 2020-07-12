@@ -11,7 +11,17 @@ const Header = () => {
         const welcomeText = `Hi, ${firstNameOfUser}`;
         return (
             <>
-                <div style={headerStyles}>{welcomeText}</div>
+                <div style={headerStyles}>
+                    <h1>{welcomeText}</h1>
+                </div>
+            </>
+        );
+    } else {
+        return (
+            <>
+                <div style={headerStyles}>
+                    <h1>Tic Tac Pro</h1>
+                </div>
             </>
         );
     }
