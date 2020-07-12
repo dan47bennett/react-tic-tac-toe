@@ -2,21 +2,19 @@ import React, { useState } from 'react';
 import { calculateWinner, isBoardFull } from '../helpers';
 import Board from './Board';
 import { gameStyles, buttonStyles, displayMessageStyles } from '../styles';
-import firebase from 'firebase'
-
+import firebase from 'firebase';
 
 const Game = () => {
-    const [history, setHistory] = useState([Array(9).fill(null)])
+    const [history, setHistory] = useState([Array(9).fill(null)]);
     const [stepNumber, setStepNumber] = useState(0);
     const [xIsNext, setXIsNext] = useState(true);
     const winner = calculateWinner(history[stepNumber]);
     const fullBoard = isBoardFull(history[stepNumber]);
 
-
-    const handleClick = i => {
-        const pointInHistory = history.slice(0, stepNumber + 1)
-        const current = pointInHistory[stepNumber]
-        const squares = [...current]
+    const handleClick = (i) => {
+        const pointInHistory = history.slice(0, stepNumber + 1);
+        const current = pointInHistory[stepNumber];
+        const squares = [...current];
 
         //if game is won or square is occupied just return
         if (winner || squares[i]) return;
@@ -30,15 +28,13 @@ const Game = () => {
     async function googleLogOut() {
         try {
             await firebase.auth().signOut();
-        }
+        } catch (error) {
             // Sign-out successful.
-          catch (error) {
             alert(error);
-          }
+        }
     }
 
-
-    const jumpTo = step => {
+    const jumpTo = (step) => {
         if (0 <= step && history[step]) {
             setStepNumber(step);
             setXIsNext(step % 2 === 0);
@@ -49,28 +45,33 @@ const Game = () => {
         if (winner) return `Winner: ${winner}`;
         if (fullBoard) return 'Stalemate';
         return `Next player: ${xIsNext ? 'X' : 'O'}`;
-
     };
 
     return (
         <>
-            <Board squares = {history[stepNumber]} onClick = {handleClick} />
-            <div style = {gameStyles}>
+            <Board squares={history[stepNumber]} onClick={handleClick} />
+            <div style={gameStyles}>
                 <div>
-                    <button style = {buttonStyles.backButton} onClick = {() => jumpTo(stepNumber - 1)}/>
-                    <button style = {buttonStyles.resetButton} onClick = {() => jumpTo(0)}/>
-                    <button style = {buttonStyles.nextButton} onClick = {() => jumpTo(stepNumber + 1)}/>
+                    <button
+                        style={buttonStyles.backButton}
+                        onClick={() => jumpTo(stepNumber - 1)}
+                    />
+                    <button
+                        style={buttonStyles.resetButton}
+                        onClick={() => jumpTo(0)}
+                    />
+                    <button
+                        style={buttonStyles.nextButton}
+                        onClick={() => jumpTo(stepNumber + 1)}
+                    />
                 </div>
-                <div style = {displayMessageStyles}>
-                    {getDisplayMessage()}
-                </div>
+                <div style={displayMessageStyles}>{getDisplayMessage()}</div>
                 <div>
-                    <button onClick = { googleLogOut }>Sign Out</button>
+                    <button onClick={googleLogOut}>Sign Out</button>
                 </div>
             </div>
         </>
-    )
+    );
 };
-
 
 export default Game;
