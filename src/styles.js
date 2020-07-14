@@ -7,7 +7,7 @@ export const displayMessageStyles = {
     textAlign: 'center'
 };
 
-const baseButtonStyles = {
+export const buttonStyles = {
     backgroundColor: 'white',
     borderStyle: 'none',
     margin: '0 5px 10px 5px',
@@ -15,21 +15,6 @@ const baseButtonStyles = {
     backgroundSize: 'contain',
     width: '40px',
     height: '40px'
-};
-
-export const buttonStyles = {
-    backButton: {
-        ...baseButtonStyles,
-        backgroundImage: `url(${require('./assets/previous.svg')})`
-    },
-    resetButton: {
-        ...baseButtonStyles,
-        backgroundImage: `url(${require('./assets/reset.svg')})`
-    },
-    nextButton: {
-        ...baseButtonStyles,
-        backgroundImage: `url(${require('./assets/next.svg')})`
-    }
 };
 
 export const boardStyles = {

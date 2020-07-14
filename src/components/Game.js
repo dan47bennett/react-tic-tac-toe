@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { calculateWinner, isBoardFull } from '../helpers';
 import Board from './Board';
-import { gameStyles, buttonStyles, displayMessageStyles } from '../styles';
+import {
+    BoardControls,
+    BackArrow,
+    Replay,
+    ForwardArrow,
+    NextPlayerText
+} from './ui/GameUI';
 
 const Game = () => {
     const [history, setHistory] = useState([Array(9).fill(null)]);
@@ -40,23 +46,14 @@ const Game = () => {
     return (
         <>
             <Board squares={history[stepNumber]} onClick={handleClick} />
-            <div style={gameStyles}>
+            <BoardControls>
                 <div>
-                    <button
-                        style={buttonStyles.backButton}
-                        onClick={() => jumpTo(stepNumber - 1)}
-                    />
-                    <button
-                        style={buttonStyles.resetButton}
-                        onClick={() => jumpTo(0)}
-                    />
-                    <button
-                        style={buttonStyles.nextButton}
-                        onClick={() => jumpTo(stepNumber + 1)}
-                    />
+                    <BackArrow onClick={() => jumpTo(stepNumber - 1)} />
+                    <Replay onClick={() => jumpTo(0)} />
+                    <ForwardArrow onClick={() => jumpTo(stepNumber + 1)} />
                 </div>
-                <div style={displayMessageStyles}>{getDisplayMessage()}</div>
-            </div>
+                <NextPlayerText>{getDisplayMessage()}</NextPlayerText>
+            </BoardControls>
         </>
     );
 };
