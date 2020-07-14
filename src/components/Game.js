@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { calculateWinner, isBoardFull } from '../helpers';
 import Board from './Board';
 import { gameStyles, buttonStyles, displayMessageStyles } from '../styles';
-import firebase from 'firebase';
 
 const Game = () => {
     const [history, setHistory] = useState([Array(9).fill(null)]);
@@ -24,15 +23,6 @@ const Game = () => {
         setStepNumber(pointInHistory.length);
         setXIsNext(!xIsNext);
     };
-
-    async function googleLogOut() {
-        try {
-            await firebase.auth().signOut();
-        } catch (error) {
-            // Sign-out successful.
-            alert(error);
-        }
-    }
 
     const jumpTo = (step) => {
         if (0 <= step && history[step]) {
@@ -66,9 +56,6 @@ const Game = () => {
                     />
                 </div>
                 <div style={displayMessageStyles}>{getDisplayMessage()}</div>
-                <div>
-                    <button onClick={googleLogOut}>Sign Out</button>
-                </div>
             </div>
         </>
     );

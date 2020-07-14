@@ -1,3 +1,14 @@
+import firebase from 'firebase';
+
+async function googleLogOut() {
+    try {
+        await firebase.auth().signOut();
+    } catch (error) {
+        // Sign-out successful.
+        alert(error);
+    }
+}
+
 export function calculateWinner(squares) {
     const lines = [
         [0, 1, 2],
@@ -28,3 +39,5 @@ export function isBoardFull(squares) {
     }
     return true;
 }
+
+export default googleLogOut;
