@@ -1,13 +1,13 @@
 import React from 'react';
 import Square from './Square';
-import { boardStyles } from '../styles';
+import { BoardContainer } from './ui/BoardUI';
 
 const Board = ({ squares, onClick }) => (
-    <div style={boardStyles}>
+    <BoardContainer component="div">
         {squares.map((square, i) => (
             <Square key={i} value={square} onClick={() => onClick(i)} />
         ))}
-    </div>
+    </BoardContainer>
 );
 
 export default Board;

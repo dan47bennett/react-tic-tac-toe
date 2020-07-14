@@ -1,32 +1,3 @@
-export const gameStyles = {
-    width: 'fit-content',
-    margin: '20px auto'
-};
-
-export const displayMessageStyles = {
-    textAlign: 'center'
-};
-
-export const buttonStyles = {
-    backgroundColor: 'white',
-    borderStyle: 'none',
-    margin: '0 5px 10px 5px',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain',
-    width: '40px',
-    height: '40px'
-};
-
-export const boardStyles = {
-    border: '5px solid darkblue',
-    borderRadius: '10px',
-    width: '500px',
-    height: '500px',
-    margin: '0 auto',
-    display: 'grid',
-    gridTemplate: 'repeat(3, 1fr) / repeat(3, 1fr)'
-};
-
 export const squareStyles = {
     background: 'lightblue',
     border: '5px solid darkblue',
