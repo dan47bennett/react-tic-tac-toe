@@ -10,4 +10,4 @@ const boardStyles = {
     gridTemplate: 'repeat(3, 1fr) / repeat(3, 1fr)'
 };
 
-export const BoardContainer = styled(Box)(boardStyles);
+export const BoardBox = styled(Box)(boardStyles);
