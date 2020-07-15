@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Auth';
-import { headerStyles } from '../styles';
+import { HeaderDiv } from './ui/HeaderUI';
 import googleLogOut from '../helpers';
 
 const Header = () => {
@@ -12,21 +12,19 @@ const Header = () => {
         const welcomeText = `Hi, ${firstNameOfUser}`;
         return (
             <>
-                <div style={headerStyles}>
+                <HeaderDiv>
                     <h1>Tic Tac Pro</h1>
                     <div>{welcomeText}</div>
-                </div>
-                <div>
                     <button onClick={googleLogOut}>Sign Out</button>
-                </div>
+                </HeaderDiv>
             </>
         );
     } else {
         return (
             <>
-                <div style={headerStyles}>
+                <HeaderDiv>
                     <h1>Tic Tac Pro</h1>
-                </div>
+                </HeaderDiv>
             </>
         );
     }
