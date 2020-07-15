@@ -1,11 +1,8 @@
 import React from 'react';
-import { squareStyles } from '../styles';
-import Radium from 'radium';
+import { SquareButton } from './ui/SquareUI';
 
 const Square = ({ value, onClick }) => (
-    <button style={squareStyles} onClick={onClick}>
-        {value}
-    </button>
+    <SquareButton onClick={onClick}>{value}</SquareButton>
 );
 
-export default Radium(Square);
+export default Square;
