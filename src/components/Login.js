@@ -1,7 +1,7 @@
 import React, { useCallback, useContext } from 'react';
 import firebase from 'firebase';
 import { withRouter, Redirect } from 'react-router';
-import { loginButtonStyles, loginDivStyle } from '../styles';
+import { LoginButton, LoginDiv } from './ui/LoginUI';
 import { AuthContext } from '../Auth';
 
 const Login = ({ history }) => {
@@ -26,12 +26,12 @@ const Login = ({ history }) => {
 
     return (
         <>
-            <div style={loginDivStyle}>
-                <h1>Please log in with google</h1>
-                <div style={loginDivStyle}>
-                    <button style={loginButtonStyles} onClick={handleLogin} />
-                </div>
-            </div>
+            <LoginDiv>
+                <h1>Please sign in</h1>
+                <LoginDiv>
+                    <LoginButton onClick={handleLogin} />
+                </LoginDiv>
+            </LoginDiv>
         </>
     );
 };
