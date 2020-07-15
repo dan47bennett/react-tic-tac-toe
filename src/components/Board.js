@@ -3,7 +3,7 @@ import Square from './Square';
 import { BoardBox } from './ui/BoardUI';
 
 const Board = ({ squares, onClick }) => (
-    <BoardBox component="div">
+    <BoardBox>
         {squares.map((square, i) => (
             <Square key={i} value={square} onClick={() => onClick(i)} />
         ))}
